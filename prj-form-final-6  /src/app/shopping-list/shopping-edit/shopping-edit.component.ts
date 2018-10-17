@@ -27,7 +27,7 @@ export class ShoppingEditComponent implements OnInit ,OnDestroy{
       (index:number)=>{
         this.editItemIndex =index;
         this.editMode = true;
-        this.editedItem = this.slService.getIngredient[index];
+        this.editedItem = this.slService.getIngredient(index);
         this.slForm.setValue({
           name:this.editedItem.name,
           amount:this.editedItem.amount
@@ -42,11 +42,11 @@ export class ShoppingEditComponent implements OnInit ,OnDestroy{
     this.slForm.reset();
     this.editMode = false;
   }
-  deleteIngredient(){
-    this.slService.deleteIngredietn(this.editItemIndex);
+  onDelete(){
+    this.slService.deleteIngredient(this.editItemIndex);
     this.onClear();
   }
-  onAddItem(form:NgForm) {
+  onAddItem(form: NgForm) {
     const value = form.value;
     const newIngredient = new Ingredient(value.name, value.amount);
     if(this.editMode == true){
